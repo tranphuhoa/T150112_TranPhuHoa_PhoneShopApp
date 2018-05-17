@@ -1,0 +1,2 @@
+E:\tai lieu\cs\T150112_TranPhuHoa_PhoneShopApp\T150112_TranPhuHoa_PhoneShopApp\bin\Debug\T150112_TranPhuHoa_PhoneShopApp.exe.config
+E:\git\T150112_TranPhuHoa_PhoneShopApp\T150112_TranPhuHoa_PhoneShopApp\bin\Debug\T150112_TranPhuHoa_PhoneShopApp.exe.config
