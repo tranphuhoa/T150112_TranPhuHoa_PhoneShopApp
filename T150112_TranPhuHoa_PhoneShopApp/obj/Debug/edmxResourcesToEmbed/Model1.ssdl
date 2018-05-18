@@ -1,41 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="T150112Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="HangSX">
+<Schema Namespace="PhoneShopAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="manufacturer">
     <Key>
-      <PropertyRef Name="MaHSX" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="MaHSX" Type="int" Nullable="false" />
-    <Property Name="TenHSX" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
-  <EntityType Name="SanPham">
+  <EntityType Name="product">
     <Key>
-      <PropertyRef Name="MaSP" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="MaSP" Type="int" Nullable="false" />
-    <Property Name="TenSP" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="MaHSX" Type="int" Nullable="false" />
-    <Property Name="BaoHanh" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Gia" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="TinhTrang" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Product_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Warranty" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Price" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Situation" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Manufacturer_ID" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_SanPham_HangSX">
-    <End Role="HangSX" Type="Self.HangSX" Multiplicity="1" />
-    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+  <Association Name="FK_product_manufacturer">
+    <End Role="manufacturer" Type="Self.manufacturer" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="HangSX">
-        <PropertyRef Name="MaHSX" />
+      <Principal Role="manufacturer">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="SanPham">
-        <PropertyRef Name="MaHSX" />
+      <Dependent Role="product">
+        <PropertyRef Name="Manufacturer_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="T150112ModelStoreContainer">
-    <EntitySet Name="HangSX" EntityType="Self.HangSX" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_SanPham_HangSX" Association="Self.FK_SanPham_HangSX">
-      <End Role="HangSX" EntitySet="HangSX" />
-      <End Role="SanPham" EntitySet="SanPham" />
+  <EntityContainer Name="PhoneShopAppModelStoreContainer">
+    <EntitySet Name="manufacturer" EntityType="Self.manufacturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_product_manufacturer" Association="Self.FK_product_manufacturer">
+      <End Role="manufacturer" EntitySet="manufacturer" />
+      <End Role="product" EntitySet="product" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

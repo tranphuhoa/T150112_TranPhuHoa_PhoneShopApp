@@ -83,10 +83,11 @@
             // cbxhangsx
             // 
             this.cbxhangsx.FormattingEnabled = true;
-            this.cbxhangsx.Location = new System.Drawing.Point(76, 42);
+            this.cbxhangsx.Location = new System.Drawing.Point(70, 43);
             this.cbxhangsx.Name = "cbxhangsx";
             this.cbxhangsx.Size = new System.Drawing.Size(102, 21);
             this.cbxhangsx.TabIndex = 88;
+            this.cbxhangsx.SelectedIndexChanged += new System.EventHandler(this.cbxhangsx_SelectedValueChanged);
             // 
             // menuStrip
             // 

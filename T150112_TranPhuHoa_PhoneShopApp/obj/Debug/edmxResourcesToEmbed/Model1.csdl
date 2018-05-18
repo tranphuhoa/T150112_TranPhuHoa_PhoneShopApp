@@ -1,43 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="T150112Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="HangSX">
+<Schema Namespace="PhoneShopAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="manufacturer">
     <Key>
-      <PropertyRef Name="MaHSX" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="MaHSX" Type="Int32" Nullable="false" />
-    <Property Name="TenHSX" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_HangSX" FromRole="HangSX" ToRole="SanPham" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="products" Relationship="Self.FK_product_manufacturer" FromRole="manufacturer" ToRole="product" />
   </EntityType>
-  <EntityType Name="SanPham">
+  <EntityType Name="product">
     <Key>
-      <PropertyRef Name="MaSP" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="MaSP" Type="Int32" Nullable="false" />
-    <Property Name="TenSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MaHSX" Type="Int32" Nullable="false" />
-    <Property Name="BaoHanh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Gia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="TinhTrang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="HangSX" Relationship="Self.FK_SanPham_HangSX" FromRole="SanPham" ToRole="HangSX" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Product_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Warranty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Situation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Manufacturer_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="manufacturer" Relationship="Self.FK_product_manufacturer" FromRole="product" ToRole="manufacturer" />
   </EntityType>
-  <Association Name="FK_SanPham_HangSX">
-    <End Role="HangSX" Type="Self.HangSX" Multiplicity="1" />
-    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+  <Association Name="FK_product_manufacturer">
+    <End Role="manufacturer" Type="Self.manufacturer" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="HangSX">
-        <PropertyRef Name="MaHSX" />
+      <Principal Role="manufacturer">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="SanPham">
-        <PropertyRef Name="MaHSX" />
+      <Dependent Role="product">
+        <PropertyRef Name="Manufacturer_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="T150112Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="HangSXes" EntityType="Self.HangSX" />
-    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
-    <AssociationSet Name="FK_SanPham_HangSX" Association="Self.FK_SanPham_HangSX">
-      <End Role="HangSX" EntitySet="HangSXes" />
-      <End Role="SanPham" EntitySet="SanPhams" />
+  <EntityContainer Name="PhoneShopAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="manufacturers" EntityType="Self.manufacturer" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <AssociationSet Name="FK_product_manufacturer" Association="Self.FK_product_manufacturer">
+      <End Role="manufacturer" EntitySet="manufacturers" />
+      <End Role="product" EntitySet="products" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

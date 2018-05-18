@@ -12,15 +12,16 @@ namespace T150112_TranPhuHoa_PhoneShopApp
     using System;
     using System.Collections.Generic;
     
-    public partial class SanPham
+    public partial class manufacturer
     {
-        public int MaSP { get; set; }
-        public string TenSP { get; set; }
-        public int MaHSX { get; set; }
-        public string BaoHanh { get; set; }
-        public string Gia { get; set; }
-        public string TinhTrang { get; set; }
+        public manufacturer()
+        {
+            this.products = new HashSet<product>();
+        }
     
-        public virtual HangSX HangSX { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<product> products { get; set; }
     }
 }

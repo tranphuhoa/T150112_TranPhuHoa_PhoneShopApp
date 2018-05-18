@@ -4,88 +4,88 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="T150112Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="HangSX">
+      <Schema Namespace="PhoneShopAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="manufacturer">
           <Key>
-            <PropertyRef Name="MaHSX" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="MaHSX" Type="int" Nullable="false" />
-          <Property Name="TenHSX" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="SanPham">
+        <EntityType Name="product">
           <Key>
-            <PropertyRef Name="MaSP" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="MaSP" Type="int" Nullable="false" />
-          <Property Name="TenSP" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="MaHSX" Type="int" Nullable="false" />
-          <Property Name="BaoHanh" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Gia" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TinhTrang" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Product_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Warranty" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Price" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Situation" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Manufacturer_ID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_SanPham_HangSX">
-          <End Role="HangSX" Type="Self.HangSX" Multiplicity="1" />
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+        <Association Name="FK_product_manufacturer">
+          <End Role="manufacturer" Type="Self.manufacturer" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="HangSX">
-              <PropertyRef Name="MaHSX" />
+            <Principal Role="manufacturer">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="MaHSX" />
+            <Dependent Role="product">
+              <PropertyRef Name="Manufacturer_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="T150112ModelStoreContainer">
-          <EntitySet Name="HangSX" EntityType="Self.HangSX" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_SanPham_HangSX" Association="Self.FK_SanPham_HangSX">
-            <End Role="HangSX" EntitySet="HangSX" />
-            <End Role="SanPham" EntitySet="SanPham" />
+        <EntityContainer Name="PhoneShopAppModelStoreContainer">
+          <EntitySet Name="manufacturer" EntityType="Self.manufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_product_manufacturer" Association="Self.FK_product_manufacturer">
+            <End Role="manufacturer" EntitySet="manufacturer" />
+            <End Role="product" EntitySet="product" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="T150112Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="HangSX">
+      <Schema Namespace="PhoneShopAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="manufacturer">
           <Key>
-            <PropertyRef Name="MaHSX" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="MaHSX" Type="Int32" Nullable="false" />
-          <Property Name="TenHSX" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_HangSX" FromRole="HangSX" ToRole="SanPham" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.FK_product_manufacturer" FromRole="manufacturer" ToRole="product" />
         </EntityType>
-        <EntityType Name="SanPham">
+        <EntityType Name="product">
           <Key>
-            <PropertyRef Name="MaSP" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="MaSP" Type="Int32" Nullable="false" />
-          <Property Name="TenSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MaHSX" Type="Int32" Nullable="false" />
-          <Property Name="BaoHanh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Gia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TinhTrang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="HangSX" Relationship="Self.FK_SanPham_HangSX" FromRole="SanPham" ToRole="HangSX" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Product_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Warranty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Situation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Manufacturer_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="manufacturer" Relationship="Self.FK_product_manufacturer" FromRole="product" ToRole="manufacturer" />
         </EntityType>
-        <Association Name="FK_SanPham_HangSX">
-          <End Role="HangSX" Type="Self.HangSX" Multiplicity="1" />
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+        <Association Name="FK_product_manufacturer">
+          <End Role="manufacturer" Type="Self.manufacturer" Multiplicity="1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="HangSX">
-              <PropertyRef Name="MaHSX" />
+            <Principal Role="manufacturer">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="SanPham">
-              <PropertyRef Name="MaHSX" />
+            <Dependent Role="product">
+              <PropertyRef Name="Manufacturer_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="T150112Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="HangSXes" EntityType="Self.HangSX" />
-          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
-          <AssociationSet Name="FK_SanPham_HangSX" Association="Self.FK_SanPham_HangSX">
-            <End Role="HangSX" EntitySet="HangSXes" />
-            <End Role="SanPham" EntitySet="SanPhams" />
+        <EntityContainer Name="PhoneShopAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="manufacturers" EntityType="Self.manufacturer" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <AssociationSet Name="FK_product_manufacturer" Association="Self.FK_product_manufacturer">
+            <End Role="manufacturer" EntitySet="manufacturers" />
+            <End Role="product" EntitySet="products" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -93,24 +93,24 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="T150112ModelStoreContainer" CdmEntityContainer="T150112Entities">
-          <EntitySetMapping Name="HangSXes">
-            <EntityTypeMapping TypeName="T150112Model.HangSX">
-              <MappingFragment StoreEntitySet="HangSX">
-                <ScalarProperty Name="MaHSX" ColumnName="MaHSX" />
-                <ScalarProperty Name="TenHSX" ColumnName="TenHSX" />
+        <EntityContainerMapping StorageEntityContainer="PhoneShopAppModelStoreContainer" CdmEntityContainer="PhoneShopAppEntities">
+          <EntitySetMapping Name="manufacturers">
+            <EntityTypeMapping TypeName="PhoneShopAppModel.manufacturer">
+              <MappingFragment StoreEntitySet="manufacturer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SanPhams">
-            <EntityTypeMapping TypeName="T150112Model.SanPham">
-              <MappingFragment StoreEntitySet="SanPham">
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
-                <ScalarProperty Name="MaHSX" ColumnName="MaHSX" />
-                <ScalarProperty Name="BaoHanh" ColumnName="BaoHanh" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="PhoneShopAppModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Situation" ColumnName="Situation" />
+                <ScalarProperty Name="Manufacturer_ID" ColumnName="Manufacturer_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

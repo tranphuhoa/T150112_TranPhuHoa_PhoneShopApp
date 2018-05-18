@@ -12,16 +12,15 @@ namespace T150112_TranPhuHoa_PhoneShopApp
     using System;
     using System.Collections.Generic;
     
-    public partial class HangSX
+    public partial class product
     {
-        public HangSX()
-        {
-            this.SanPhams = new HashSet<SanPham>();
-        }
+        public int ID { get; set; }
+        public string Product_Name { get; set; }
+        public string Warranty { get; set; }
+        public string Price { get; set; }
+        public string Situation { get; set; }
+        public int Manufacturer_ID { get; set; }
     
-        public int MaHSX { get; set; }
-        public string TenHSX { get; set; }
-    
-        public virtual ICollection<SanPham> SanPhams { get; set; }
+        public virtual manufacturer manufacturer { get; set; }
     }
 }

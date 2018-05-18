@@ -13,10 +13,10 @@ namespace T150112_TranPhuHoa_PhoneShopApp
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class T150112Entities : DbContext
+    public partial class PhoneShopAppEntities : DbContext
     {
-        public T150112Entities()
-            : base("name=T150112Entities")
+        public PhoneShopAppEntities()
+            : base("name=PhoneShopAppEntities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace T150112_TranPhuHoa_PhoneShopApp
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<HangSX> HangSXes { get; set; }
-        public virtual DbSet<SanPham> SanPhams { get; set; }
+        public virtual DbSet<manufacturer> manufacturers { get; set; }
+        public virtual DbSet<product> products { get; set; }
     }
 }
