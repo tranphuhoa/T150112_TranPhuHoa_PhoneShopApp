@@ -49,7 +49,6 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
 
         private void cbxhangsx_SelectedValueChanged(object sender, EventArgs e)
         {
-            // get id from combobox
             var temp = cbxhangsx.SelectedValue;
             int ID = 0;
             int.TryParse(temp.ToString(), out ID);
@@ -66,16 +65,11 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             {
                 if (MessageBox.Show("Do you want to delete this?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    // get first rows
                     var row = listview.SelectedRows[0];
-                    // get ID cell
                     var cell = row.Cells["ID"];
-                    // return ID
                     int ID = (int)cell.Value;
-                    // get employees has ID
                     PhoneShopAppEntities db = new PhoneShopAppEntities();
                     product bk = db.products.Single(b => b.ID == ID);
-                    //db.DeleteObject(bk);
                     db.products.Remove(bk);
                     db.SaveChanges();
                     Product((int)cbxhangsx.SelectedValue);
@@ -87,6 +81,28 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
         private void btnRefesh_Click(object sender, EventArgs e)
         {
             this.Manufacturer();
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            PhoneShop fr = new PhoneShop();
+            fr.ShowDialog();
+            Product((int)cbxhangsx.SelectedValue);
+            ShowList();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (listview.SelectedRows.Count == 1)
+            {
+                var row = listview.SelectedRows[0];
+                var cell = row.Cells["ID"];
+                int ID = (int)cell.Value;
+                PhoneShop edit = new PhoneShop(ID);
+                edit.ShowDialog();
+                Product((int)cbxhangsx.SelectedValue);
+                ShowList();
+            }
         }
     }
 }

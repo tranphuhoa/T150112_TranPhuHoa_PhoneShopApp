@@ -97,6 +97,9 @@
     <EmbeddedResource Include="PhoneShop\PhoneList.resx">
       <DependentUpon>PhoneList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PhoneShop\PhoneShop.resx">
+      <DependentUpon>PhoneShop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
