@@ -15,7 +15,6 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
         int ProductID = 0;
         product bkedit = new product();
         PhoneShopAppEntities db = new PhoneShopAppEntities();
-
         public PhoneShop()
         {
             InitializeComponent();
@@ -42,8 +41,6 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
         {
             
             bkedit = db.products.Single(b => b.ID == ProductID);
-            txtID.Enabled = false;
-            txtID.Text = bkedit.ID.ToString();
             txtProduct.Text = bkedit.Product_Name;
             txtWarranty.Text = bkedit.Warranty;
             txtPrice.Text = bkedit.Price;
@@ -85,13 +82,14 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             {
                 try
                 {
-                    bkedit.ID = int.Parse(txtID.Text.ToString());
+                    //bkedit.ID = int.Parse(txtID.Text.ToString());
                     bkedit.Product_Name = txtProduct.Text;
                     bkedit.Warranty = txtWarranty.Text;
                     bkedit.Price = txtPrice.Text;
                     bkedit.Situation = txtStuation.Text;
                     bkedit.Manufacturer_ID = (int)cbxManufacturer.SelectedValue;
                     //PhoneShopAppEntities db = new PhoneShopAppEntities();
+                    //db.Entry(bkedit).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     MessageBox.Show("Edit product success");
                     this.Close();

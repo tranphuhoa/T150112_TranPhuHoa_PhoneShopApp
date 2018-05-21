@@ -27,5 +27,6 @@ namespace T150112_TranPhuHoa_PhoneShopApp
     
         public virtual DbSet<manufacturer> manufacturers { get; set; }
         public virtual DbSet<product> products { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
