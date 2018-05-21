@@ -25,6 +25,7 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
 
         private void ShowList()
         {
+            
             int number = listview.RowCount;
             txtdem.Text = number.ToString();
         }

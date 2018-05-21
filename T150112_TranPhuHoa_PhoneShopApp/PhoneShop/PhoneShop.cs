@@ -35,7 +35,7 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             PhoneShopAppEntities db = new PhoneShopAppEntities();
             cbxManufacturer.DataSource = db.manufacturers.ToList();
             cbxManufacturer.DisplayMember = "Name";
-            cbxManufacturer.DisplayMember = "ID";
+            cbxManufacturer.ValueMember = "ID";
         }
 
         void Product()
@@ -58,13 +58,13 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            var db = new PhoneShopAppEntities();
             if (ProductID == 0)
             {
                 try
                 {
-                    PhoneShopAppEntities db = new PhoneShopAppEntities();
                     product bk = new product();
-                    bk.ID = int.Parse(txtID.Text.ToString());
+                    //bk.ID = int.Parse(txtID.Text.ToString());
                     bk.Product_Name = txtProduct.Text;
                     bk.Warranty = txtWarranty.Text;
                     bk.Price = txtPrice.Text;
@@ -85,7 +85,6 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             {
                 try
                 {
-                    PhoneShopAppEntities db = new PhoneShopAppEntities();
                     bkedit.ID = int.Parse(txtID.Text.ToString());
                     bkedit.Product_Name = txtProduct.Text;
                     bkedit.Warranty = txtWarranty.Text;
