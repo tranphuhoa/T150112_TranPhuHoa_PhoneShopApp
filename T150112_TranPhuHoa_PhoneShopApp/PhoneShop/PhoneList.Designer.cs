@@ -46,7 +46,7 @@
             // 
             this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(193, 47);
+            this.lblTotal.Location = new System.Drawing.Point(219, 47);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(45, 13);
             this.lblTotal.TabIndex = 92;
@@ -54,7 +54,7 @@
             // 
             // txtdem
             // 
-            this.txtdem.Location = new System.Drawing.Point(254, 44);
+            this.txtdem.Location = new System.Drawing.Point(280, 44);
             this.txtdem.Name = "txtdem";
             this.txtdem.Size = new System.Drawing.Size(52, 20);
             this.txtdem.TabIndex = 91;
@@ -76,14 +76,14 @@
             this.lblhangsx.AutoSize = true;
             this.lblhangsx.Location = new System.Drawing.Point(12, 47);
             this.lblhangsx.Name = "lblhangsx";
-            this.lblhangsx.Size = new System.Drawing.Size(50, 13);
+            this.lblhangsx.Size = new System.Drawing.Size(73, 13);
             this.lblhangsx.TabIndex = 89;
-            this.lblhangsx.Text = "HangSX:";
+            this.lblhangsx.Text = "Manufacturer:";
             // 
             // cbxhangsx
             // 
             this.cbxhangsx.FormattingEnabled = true;
-            this.cbxhangsx.Location = new System.Drawing.Point(70, 43);
+            this.cbxhangsx.Location = new System.Drawing.Point(96, 43);
             this.cbxhangsx.Name = "cbxhangsx";
             this.cbxhangsx.Size = new System.Drawing.Size(102, 21);
             this.cbxhangsx.TabIndex = 88;

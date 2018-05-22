@@ -55,19 +55,17 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var db = new PhoneShopAppEntities();
             if (ProductID == 0)
             {
                 try
                 {
                     product bk = new product();
-                    //bk.ID = int.Parse(txtID.Text.ToString());
                     bk.Product_Name = txtProduct.Text;
                     bk.Warranty = txtWarranty.Text;
                     bk.Price = txtPrice.Text;
                     bk.Situation = txtStuation.Text;
                     bk.Manufacturer_ID = (int)cbxManufacturer.SelectedValue;
-                    //PhoneShopAppEntities db = new PhoneShopAppEntities();
+                    PhoneShopAppEntities db = new PhoneShopAppEntities();
                     db.products.Add(bk);
                     db.SaveChanges();
                     MessageBox.Show("Add new product success");
@@ -82,14 +80,14 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             {
                 try
                 {
-                    //bkedit.ID = int.Parse(txtID.Text.ToString());
+                    PhoneShopAppEntities db = new PhoneShopAppEntities();
+                    bkedit = db.products.Find(bkedit.ID);
                     bkedit.Product_Name = txtProduct.Text;
                     bkedit.Warranty = txtWarranty.Text;
                     bkedit.Price = txtPrice.Text;
                     bkedit.Situation = txtStuation.Text;
                     bkedit.Manufacturer_ID = (int)cbxManufacturer.SelectedValue;
-                    //PhoneShopAppEntities db = new PhoneShopAppEntities();
-                    //db.Entry(bkedit).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(bkedit).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     MessageBox.Show("Edit product success");
                     this.Close();
