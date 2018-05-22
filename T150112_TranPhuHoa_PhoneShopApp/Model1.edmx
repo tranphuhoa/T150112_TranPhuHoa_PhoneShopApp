@@ -22,6 +22,7 @@
           <Property Name="Price" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Situation" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Manufacturer_ID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -33,7 +34,7 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_product_manufacturer">
+        <Association Name="FK_product_Manufacturer">
           <End Role="manufacturer" Type="Self.manufacturer" Multiplicity="1" />
           <End Role="product" Type="Self.product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -49,7 +50,7 @@
           <EntitySet Name="manufacturer" EntityType="Self.manufacturer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_product_manufacturer" Association="Self.FK_product_manufacturer">
+          <AssociationSet Name="FK_product_Manufacturer" Association="Self.FK_product_Manufacturer">
             <End Role="manufacturer" EntitySet="manufacturer" />
             <End Role="product" EntitySet="product" />
           </AssociationSet>
@@ -59,21 +60,31 @@
     <edmx:ConceptualModels>
       <Schema Namespace="PhoneShopAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PhoneShopAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="PhoneShopAppModel.sysdiagram" />
           <EntitySet Name="manufacturers" EntityType="PhoneShopAppModel.manufacturer" />
           <EntitySet Name="products" EntityType="PhoneShopAppModel.product" />
-          <EntitySet Name="sysdiagrams" EntityType="PhoneShopAppModel.sysdiagram" />
-          <AssociationSet Name="FK_product_manufacturer" Association="PhoneShopAppModel.FK_product_manufacturer">
+          <AssociationSet Name="FK_product_Manufacturer" Association="PhoneShopAppModel.FK_product_Manufacturer">
             <End Role="manufacturer" EntitySet="manufacturers" />
             <End Role="product" EntitySet="products" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="manufacturer">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="products" Relationship="PhoneShopAppModel.FK_product_manufacturer" FromRole="manufacturer" ToRole="product" />
+          <NavigationProperty Name="products" Relationship="PhoneShopAppModel.FK_product_Manufacturer" FromRole="manufacturer" ToRole="product" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -85,19 +96,10 @@
           <Property Name="Price" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Situation" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Manufacturer_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="manufacturer" Relationship="PhoneShopAppModel.FK_product_manufacturer" FromRole="product" ToRole="manufacturer" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="manufacturer" Relationship="PhoneShopAppModel.FK_product_Manufacturer" FromRole="product" ToRole="manufacturer" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_product_manufacturer">
+        <Association Name="FK_product_Manufacturer">
           <End Type="PhoneShopAppModel.manufacturer" Role="manufacturer" Multiplicity="1" />
           <End Type="PhoneShopAppModel.product" Role="product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,26 +117,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PhoneShopAppModelStoreContainer" CdmEntityContainer="PhoneShopAppEntities">
-          <EntitySetMapping Name="manufacturers">
-            <EntityTypeMapping TypeName="PhoneShopAppModel.manufacturer">
-              <MappingFragment StoreEntitySet="manufacturer">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="PhoneShopAppModel.product">
-              <MappingFragment StoreEntitySet="product">
-                <ScalarProperty Name="Manufacturer_ID" ColumnName="Manufacturer_ID" />
-                <ScalarProperty Name="Situation" ColumnName="Situation" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
-                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="PhoneShopAppModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -146,7 +128,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="manufacturers">
+            <EntityTypeMapping TypeName="PhoneShopAppModel.manufacturer">
+              <MappingFragment StoreEntitySet="manufacturer">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="PhoneShopAppModel.product">
+              <MappingFragment StoreEntitySet="product">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Manufacturer_ID" ColumnName="Manufacturer_ID" />
+                <ScalarProperty Name="Situation" ColumnName="Situation" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -20,6 +20,7 @@ namespace T150112_TranPhuHoa_PhoneShopApp
         public string Price { get; set; }
         public string Situation { get; set; }
         public int Manufacturer_ID { get; set; }
+        public byte[] Image { get; set; }
     
         public virtual manufacturer manufacturer { get; set; }
     }

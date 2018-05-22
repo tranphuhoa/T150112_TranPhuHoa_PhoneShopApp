@@ -25,8 +25,8 @@ namespace T150112_TranPhuHoa_PhoneShopApp
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<manufacturer> manufacturers { get; set; }
         public virtual DbSet<product> products { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

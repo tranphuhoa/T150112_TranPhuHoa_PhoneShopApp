@@ -61,10 +61,13 @@
             // 
             // listview
             // 
+            this.listview.AllowUserToAddRows = false;
+            this.listview.AllowUserToDeleteRows = false;
             this.listview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listview.Location = new System.Drawing.Point(0, 69);
             this.listview.Name = "listview";
+            this.listview.ReadOnly = true;
             this.listview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listview.Size = new System.Drawing.Size(742, 253);
             this.listview.TabIndex = 90;

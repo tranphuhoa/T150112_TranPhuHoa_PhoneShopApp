@@ -17,6 +17,7 @@
     <Property Name="Price" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Situation" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Manufacturer_ID" Type="int" Nullable="false" />
+    <Property Name="Image" Type="image" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -28,7 +29,7 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <Association Name="FK_product_manufacturer">
+  <Association Name="FK_product_Manufacturer">
     <End Role="manufacturer" Type="Self.manufacturer" Multiplicity="1" />
     <End Role="product" Type="Self.product" Multiplicity="*" />
     <ReferentialConstraint>
@@ -44,7 +45,7 @@
     <EntitySet Name="manufacturer" EntityType="Self.manufacturer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_product_manufacturer" Association="Self.FK_product_manufacturer">
+    <AssociationSet Name="FK_product_Manufacturer" Association="Self.FK_product_Manufacturer">
       <End Role="manufacturer" EntitySet="manufacturer" />
       <End Role="product" EntitySet="product" />
     </AssociationSet>

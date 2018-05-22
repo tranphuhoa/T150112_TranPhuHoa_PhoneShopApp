@@ -59,13 +59,18 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             {
                 try
                 {
+                    PhoneShopAppEntities db = new PhoneShopAppEntities();
                     product bk = new product();
                     bk.Product_Name = txtProduct.Text;
                     bk.Warranty = txtWarranty.Text;
                     bk.Price = txtPrice.Text;
                     bk.Situation = txtStuation.Text;
                     bk.Manufacturer_ID = (int)cbxManufacturer.SelectedValue;
-                    PhoneShopAppEntities db = new PhoneShopAppEntities();
+                    ImageConverter converter = new ImageConverter();
+                    byte[] image = (byte[])converter.ConvertTo(pictureBox.Image, typeof(byte[]));
+                    product upload = new product();
+                    upload.Image = image;
+                    bk.Image = image;
                     db.products.Add(bk);
                     db.SaveChanges();
                     MessageBox.Show("Add new product success");
@@ -87,6 +92,11 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
                     bkedit.Price = txtPrice.Text;
                     bkedit.Situation = txtStuation.Text;
                     bkedit.Manufacturer_ID = (int)cbxManufacturer.SelectedValue;
+                    ImageConverter converter = new ImageConverter();
+                    byte[] image = (byte[])converter.ConvertTo(pictureBox.Image, typeof(byte[]));
+                    product upload = new product();
+                    upload.Image = image;
+                    bkedit.Image = image;
                     db.Entry(bkedit).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                     MessageBox.Show("Edit product success");
@@ -97,6 +107,15 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void btnImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            if (open.ShowDialog() == DialogResult.OK)
+                txtImage.Text = open.FileName;
+            pictureBox.ImageLocation = open.FileName;
         }
     }
 }

@@ -40,6 +40,11 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.cbxManufacturer = new System.Windows.Forms.ComboBox();
+            this.btnImage = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.txtImage = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // txtProduct
@@ -117,7 +122,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(104, 262);
+            this.btnCancel.Location = new System.Drawing.Point(104, 323);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 12;
@@ -127,7 +132,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(211, 262);
+            this.btnSave.Location = new System.Drawing.Point(211, 323);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 13;
@@ -143,11 +148,49 @@
             this.cbxManufacturer.Size = new System.Drawing.Size(177, 21);
             this.cbxManufacturer.TabIndex = 14;
             // 
+            // btnImage
+            // 
+            this.btnImage.Location = new System.Drawing.Point(354, 272);
+            this.btnImage.Name = "btnImage";
+            this.btnImage.Size = new System.Drawing.Size(75, 23);
+            this.btnImage.TabIndex = 15;
+            this.btnImage.Text = "Browse";
+            this.btnImage.UseVisualStyleBackColor = true;
+            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(322, 125);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(132, 138);
+            this.pictureBox.TabIndex = 16;
+            this.pictureBox.TabStop = false;
+            // 
+            // txtImage
+            // 
+            this.txtImage.Location = new System.Drawing.Point(111, 270);
+            this.txtImage.Name = "txtImage";
+            this.txtImage.Size = new System.Drawing.Size(177, 20);
+            this.txtImage.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 273);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Image";
+            // 
             // PhoneShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 316);
+            this.ClientSize = new System.Drawing.Size(473, 369);
+            this.Controls.Add(this.txtImage);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.btnImage);
             this.Controls.Add(this.cbxManufacturer);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
@@ -162,6 +205,7 @@
             this.Controls.Add(this.label2);
             this.Name = "PhoneShop";
             this.Text = "PhoneShop";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,5 +225,9 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cbxManufacturer;
+        private System.Windows.Forms.Button btnImage;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.TextBox txtImage;
+        private System.Windows.Forms.Label label1;
     }
 }

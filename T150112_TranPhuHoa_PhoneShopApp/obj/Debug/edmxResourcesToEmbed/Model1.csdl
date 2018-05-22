@@ -1,21 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PhoneShopAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="PhoneShopAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="PhoneShopAppModel.sysdiagram" />
     <EntitySet Name="manufacturers" EntityType="PhoneShopAppModel.manufacturer" />
     <EntitySet Name="products" EntityType="PhoneShopAppModel.product" />
-    <EntitySet Name="sysdiagrams" EntityType="PhoneShopAppModel.sysdiagram" />
-    <AssociationSet Name="FK_product_manufacturer" Association="PhoneShopAppModel.FK_product_manufacturer">
+    <AssociationSet Name="FK_product_Manufacturer" Association="PhoneShopAppModel.FK_product_Manufacturer">
       <End Role="manufacturer" EntitySet="manufacturers" />
       <End Role="product" EntitySet="products" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityType Name="manufacturer">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="products" Relationship="PhoneShopAppModel.FK_product_manufacturer" FromRole="manufacturer" ToRole="product" />
+    <NavigationProperty Name="products" Relationship="PhoneShopAppModel.FK_product_Manufacturer" FromRole="manufacturer" ToRole="product" />
   </EntityType>
   <EntityType Name="product">
     <Key>
@@ -27,19 +37,10 @@
     <Property Name="Price" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Situation" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Manufacturer_ID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="manufacturer" Relationship="PhoneShopAppModel.FK_product_manufacturer" FromRole="product" ToRole="manufacturer" />
+    <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="manufacturer" Relationship="PhoneShopAppModel.FK_product_Manufacturer" FromRole="product" ToRole="manufacturer" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <Association Name="FK_product_manufacturer">
+  <Association Name="FK_product_Manufacturer">
     <End Type="PhoneShopAppModel.manufacturer" Role="manufacturer" Multiplicity="1" />
     <End Type="PhoneShopAppModel.product" Role="product" Multiplicity="*" />
     <ReferentialConstraint>
