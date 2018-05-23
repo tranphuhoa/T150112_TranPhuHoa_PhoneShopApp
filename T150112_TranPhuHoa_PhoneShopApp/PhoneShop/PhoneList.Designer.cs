@@ -38,6 +38,7 @@
             this.btnUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRefesh = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDisplay = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.listview)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -98,7 +99,8 @@
             this.btnCreate,
             this.btnUpdate,
             this.btnDelete,
-            this.btnRefesh});
+            this.btnRefesh,
+            this.btnDisplay});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(742, 24);
@@ -132,6 +134,13 @@
             this.btnRefesh.Size = new System.Drawing.Size(54, 20);
             this.btnRefesh.Text = "Refesh";
             this.btnRefesh.Click += new System.EventHandler(this.btnRefesh_Click);
+            // 
+            // btnDisplay
+            // 
+            this.btnDisplay.Name = "btnDisplay";
+            this.btnDisplay.Size = new System.Drawing.Size(57, 20);
+            this.btnDisplay.Text = "Display";
+            this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
             // PhoneList
             // 
@@ -167,5 +176,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnUpdate;
         private System.Windows.Forms.ToolStripMenuItem btnDelete;
         private System.Windows.Forms.ToolStripMenuItem btnRefesh;
+        private System.Windows.Forms.ToolStripMenuItem btnDisplay;
     }
 }

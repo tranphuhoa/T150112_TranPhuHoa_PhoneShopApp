@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,8 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             txtPrice.Text = bkedit.Price;
             txtStuation.Text = bkedit.Situation;
             cbxManufacturer.SelectedValue = bkedit.Manufacturer_ID;
+            //this.pictureBox.Image = byteArrayToImage(bkedit.Image);
+            if (bkedit.Image != null) { this.pictureBox.Image = byteArrayToImage(bkedit.Image); }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -53,6 +56,7 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             this.Close();
         }
 
+        
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (ProductID == 0)
@@ -92,6 +96,7 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
                     bkedit.Price = txtPrice.Text;
                     bkedit.Situation = txtStuation.Text;
                     bkedit.Manufacturer_ID = (int)cbxManufacturer.SelectedValue;
+                    
                     ImageConverter converter = new ImageConverter();
                     byte[] image = (byte[])converter.ConvertTo(pictureBox.Image, typeof(byte[]));
                     product upload = new product();
@@ -116,6 +121,13 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
             if (open.ShowDialog() == DialogResult.OK)
                 txtImage.Text = open.FileName;
             pictureBox.ImageLocation = open.FileName;
+        }
+
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
         }
     }
 }

@@ -105,5 +105,16 @@ namespace T150112_TranPhuHoa_PhoneShopApp.PhoneShop
                 ShowList();
             }
         }
+
+        private void btnDisplay_Click(object sender, EventArgs e)
+        {
+            if (listview.SelectedRows.Count == 1)
+            {
+                product upload = (product)listview.SelectedRows[0].DataBoundItem;
+                // show picture with upload.Image data
+                Details form = new Details(upload.Image);
+                form.ShowDialog();
+            }
+        }
     }
 }
